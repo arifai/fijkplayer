@@ -27,7 +27,7 @@ class _LocalPathState extends State<LocalPath> {
   bool root = true;
 
   List<FileSystemEntity> files = [];
-  Directory current = Directory.current;
+  Directory? current = Directory.current;
 
   StreamSubscription? _subscription;
 
@@ -108,19 +108,18 @@ class _LocalPathState extends State<LocalPath> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _subscription?.cancel();
   }
 
   @override
   Widget build(BuildContext context) {
-    int currentLength = current.absolute.path.length;
+    int currentLength = current!.absolute.path.length;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         ListTile(
-          title: Text(current != null ? current.path : "/",
+          title: Text(current != null ? current!.path : "/",
               style: TextStyle(
                 color: Theme.of(context).dividerColor,
                 fontSize: 14,
